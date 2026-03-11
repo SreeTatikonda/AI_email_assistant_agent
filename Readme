@@ -1,0 +1,149 @@
+# Clarity — AI Email Assistant
+
+> An intelligent email triage agent that reads your Gmail, categorizes messages, and drafts professional replies — powered by Claude AI.
+
+---
+
+## Overview
+
+Clarity is a React-based AI agent that connects to your Gmail inbox and automatically:
+
+- Fetches your most recent unread emails
+- Categorizes each one (Urgent, Action Needed, FYI, Newsletter, Spam)
+- Generates a one-sentence AI summary per email
+- Drafts professional replies on demand
+
+Built with the Anthropic Claude API and Gmail via MCP (Model Context Protocol).
+
+---
+
+## Tech Stack
+
+- **Frontend** — React (JSX), inline CSS
+- **AI** — Claude claude-sonnet-4-20250514 via Anthropic API
+- **Email** — Gmail MCP server (`https://gmail.mcp.claude.com/mcp`)
+- **Fonts** — Lora, DM Sans (Google Fonts)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 16+
+- A Claude.ai account with Gmail connected under **Settings → Connections**
+- An Anthropic API key
+
+### Installation
+
+```bash
+# 1. Create a new React app
+npx create-react-app clarity
+cd clarity
+
+# 2. Replace src/App.js with App.jsx from this repo
+cp App.jsx src/App.js
+
+# 3. Start the development server
+npm start
+```
+
+The app will open at `http://localhost:3000`.
+
+---
+
+## Gmail Connection
+
+Clarity uses Gmail via Claude's MCP integration. To enable it:
+
+1. Go to [claude.ai](https://claude.ai) → **Settings → Connections**
+2. Connect your Gmail account
+3. Return to the app and click **Sort my inbox**
+
+> Note: The Gmail MCP connection is scoped to your Claude.ai session. No credentials are stored in the app.
+
+---
+
+## How It Works
+
+```
+User clicks "Sort my inbox"
+        ↓
+Claude calls Gmail MCP → fetches 10 unread emails
+        ↓
+Claude categorizes + summarizes each email
+        ↓
+User selects an email → clicks "Generate reply"
+        ↓
+Claude drafts a professional reply
+        ↓
+User edits and copies the reply
+```
+
+---
+
+## Email Categories
+
+| Category | Description |
+|---|---|
+| Urgent | Time-sensitive, needs immediate attention |
+| Action Needed | Requires a response or follow-up |
+| FYI | Informational, no reply needed |
+| Newsletter | Subscriptions and marketing |
+| Spam | Junk or irrelevant email |
+
+---
+
+## Project Structure
+
+```
+clarity/
+├── src/
+│   └── App.js          # Main Clarity component
+├── public/
+│   └── index.html
+├── package.json
+└── README.md
+```
+
+---
+
+## Customization
+
+**Change the number of emails fetched** — edit the prompt in `fetchAndTriageEmails()`:
+```js
+"fetch the 10 most recent unread emails"  // change 10 to any number
+```
+
+**Add a new category** — add an entry to the `CATEGORIES` object:
+```js
+const CATEGORIES = {
+  // ...existing categories
+  followup: { label: "Follow Up", color: "#10B981", bg: "#10B98112", icon: "🟢" },
+};
+```
+
+---
+
+## Deployment
+
+You can deploy this to Netlify in a few steps:
+
+```bash
+npm run build
+```
+
+Then drag the `build/` folder into [netlify.com/drop](https://app.netlify.com/drop), or connect your GitHub repo for auto-deploys.
+
+---
+
+## Author
+
+**Yasaswini Tatikonda**
+[Portfolio](https://yasaswinitatikonda.netlify.app) · [GitHub](https://github.com/SreeTatikonda) · [LinkedIn](https://linkedin.com/in/tatikondayasaswini)
+
+---
+
+## License
+
+MIT — free to use and modify.

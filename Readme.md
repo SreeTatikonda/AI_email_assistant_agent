@@ -86,11 +86,11 @@ User edits and copies the reply
 
 | Category | Description |
 |---|---|
-| 🔴 Urgent | Time-sensitive, needs immediate attention |
-| 🟠 Action Needed | Requires a response or follow-up |
-| 🔵 FYI | Informational, no reply needed |
-| 💜 Newsletter | Subscriptions and marketing |
-| ⚫ Spam | Junk or irrelevant email |
+| Urgent | Time-sensitive, needs immediate attention |
+| Action Needed | Requires a response or follow-up |
+| FYI | Informational, no reply needed |
+| Newsletter | Subscriptions and marketing |
+| Spam | Junk or irrelevant email |
 
 ---
 
@@ -119,7 +119,7 @@ clarity/
 ```js
 const CATEGORIES = {
   // ...existing categories
-  followup: { label: "Follow Up", color: "#10B981", bg: "#10B98112", icon: "🟢" },
+  followup: { label: "Follow Up", color: "#10B981", bg: "#10B98112", icon: "" },
 };
 ```
 
